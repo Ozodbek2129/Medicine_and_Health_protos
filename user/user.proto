@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+option go_package="genproto/user";
+
+package user;
+
+service UserService{
+    rpc RegisterUser (RegisterUserRequest) returns (RegisterUserResponse);
+    rpc LoginUser (LoginUserRequest) returns (LoginUserResponse);
+    rpc RefreshToken (RefreshTokenRequest) returns (RefreshTokenResponse);
+    rpc GetUserProfile (GetUserProfileRequest) returns (GetUserProfileResponse);
+    rpc UpdateUserProfile (UpdateUserProfileRequest) returns (UpdateUserProfileResponse);  
+    rpc LogoutUser (LogoutUserRequest) returns (LogoutUserResponse); 
+    rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse);
+}
+
+message ValidateTokenRequest{
+    string access_token = 1;
+}
+
+message ValidateTokenResponse{
+    string message = 1;
+}
+
+message LogoutUserRequest{
+    string access_token = 1;
+}
+
+message LogoutUserResponse{
+    string message = 1;
+}
+
+message UpdateUserProfileRequest{
+    string id = 1;
+    string email = 2;
+    string password = 3;
+    string first_name = 4;
+    string last_name = 5;
+    string date_of_birthday = 6;
+    string gender = 7;
+    string role = 8;
+}
+
+message UpdateUserProfileResponse{
+    string message = 1;
+}
+
+message GetUserProfileRequest{
+    string email = 1;
+}
+
+message GetUserProfileResponse{
+    string id = 1;
+    string email = 2;
+    string password = 3;
+    string first_name = 4;
+    string last_name = 5;
+    string date_of_birthday = 6;
+    string gender = 7;
+    string role = 8;
+    string created_at = 9;
+    string updated_at = 10;
+}
+
+message RefreshTokenRequest{
+    string refresh_token = 1;
+}
+
+message RefreshTokenResponse{
+    string access_token = 1;
+    string refresh_token = 2;
+}
+
+message LoginUserRequest{
+    string email = 1;
+    string password = 2;
+}
+
+message LoginUserResponse{
+    string accsess_token = 1;
+    string resresh_token = 2;
+}
+
+message RegisterUserRequest{
+    string email = 1;
+    string password = 2;
+    string first_name = 3;
+    string last_name = 4;
+    string date_of_birthday = 5;
+    string gender = 6;
+    string role = 7;
+}
+
+message RegisterUserResponse{
+    string id = 1;
+    string email = 2;
+    string password = 3;
+    string first_name = 4;
+    string last_name = 5;
+    string date_of_birthday = 6;
+    string gender = 7;
+    string role = 8;
+    string created_at = 9;
+    string updated_at = 10;
+}
