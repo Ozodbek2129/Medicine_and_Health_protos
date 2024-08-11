@@ -58,8 +58,6 @@ message AddMedicalRecordRequest {
     string description = 4;
     string doctor_id = 5;
     repeated string attachments = 6;
-    string created_at = 7;
-    string updated_at = 8;
 }
 
 message AddMedicalRecordResponse {
