@@ -52,7 +52,14 @@ message MedicalRecord {
 }
 
 message AddMedicalRecordRequest {
-    MedicalRecord medical_record = 1;
+    string user_id = 1;
+    string record_type = 2;
+    string record_date = 3;
+    string description = 4;
+    string doctor_id = 5;
+    repeated string attachments = 6;
+    string created_at = 7;
+    string updated_at = 8;
 }
 
 message AddMedicalRecordResponse {
