@@ -1,0 +1,265 @@
+syntax = "proto3";
+
+option go_package="genproto/health_analytics";
+
+package healthanalytics;
+
+// Health Analytics Service uchun servis ta'rifi
+service HealthAnalyticsService {
+    // Tibbiy yozuvlar uchun RPC lar
+    rpc AddMedicalRecord(AddMedicalRecordRequest) returns (AddMedicalRecordResponse);
+    rpc GetMedicalRecord(GetMedicalRecordRequest) returns (GetMedicalRecordResponse);
+    rpc UpdateMedicalRecord(UpdateMedicalRecordRequest) returns (UpdateMedicalRecordResponse);
+    rpc DeleteMedicalRecord(DeleteMedicalRecordRequest) returns (DeleteMedicalRecordResponse);
+    rpc ListMedicalRecords(ListMedicalRecordsRequest) returns (ListMedicalRecordsResponse);
+
+    // Genetik ma'lumotlar uchun RPC lar
+    rpc AddGeneticData(AddGeneticDataRequest) returns (AddGeneticDataResponse);
+    rpc GetGeneticData(GetGeneticDataRequest) returns (GetGeneticDataResponse);
+    rpc UpdateGeneticData(UpdateGeneticDataRequest) returns (UpdateGeneticDataResponse);
+    rpc DeleteGeneticData(DeleteGeneticDataRequest) returns (DeleteGeneticDataResponse);
+
+    // Turmush tarzi ma'lumotlari uchun RPC lar
+    rpc AddLifestyleData(AddLifestyleDataRequest) returns (AddLifestyleDataResponse);
+    rpc GetLifestyleData(GetLifestyleDataRequest) returns (GetLifestyleDataResponse);
+    rpc UpdateLifestyleData(UpdateLifestyleDataRequest) returns (UpdateLifestyleDataResponse);
+    rpc DeleteLifestyleData(DeleteLifestyleDataRequest) returns (DeleteLifestyleDataResponse);
+
+    // Kiyiladigan qurilma ma'lumotlari uchun RPC lar
+    rpc AddWearableData(AddWearableDataRequest) returns (AddWearableDataResponse);
+    rpc GetWearableData(GetWearableDataRequest) returns (GetWearableDataResponse);
+    rpc UpdateWearableData(UpdateWearableDataRequest) returns (UpdateWearableDataResponse);
+    rpc DeleteWearableData(DeleteWearableDataRequest) returns (DeleteWearableDataResponse);
+
+    // Sog'liq tavsiyalari va monitoringi uchun RPC lar
+    rpc GenerateHealthRecommendations(GenerateHealthRecommendationsRequest) returns (GenerateHealthRecommendationsResponse);
+    rpc GetRealtimeHealthMonitoring(GetRealtimeHealthMonitoringRequest) returns (GetRealtimeHealthMonitoringResponse);
+    rpc GetDailyHealthSummary(GetDailyHealthSummaryRequest) returns (GetDailyHealthSummaryResponse);
+    rpc GetWeeklyHealthSummary(GetWeeklyHealthSummaryRequest) returns (GetWeeklyHealthSummaryResponse);
+}
+
+// Tibbiy yozuvlar uchun message'lar
+message MedicalRecord {
+    string id = 1;
+    string user_id = 2;
+    string record_type = 3;
+    string record_date = 4;
+    string description = 5;
+    string doctor_id = 6;
+    repeated string attachments = 7;
+    string created_at = 8;
+    string updated_at = 9;
+}
+
+message AddMedicalRecordRequest {
+    MedicalRecord medical_record = 1;
+}
+
+message AddMedicalRecordResponse {
+    MedicalRecord medical_record = 1;
+}
+
+message GetMedicalRecordRequest {
+    string id = 1;
+}
+
+message GetMedicalRecordResponse {
+    MedicalRecord medical_record = 1;
+}
+
+message UpdateMedicalRecordRequest {
+    MedicalRecord medical_record = 1;
+}
+
+message UpdateMedicalRecordResponse {
+    bool success = 1;
+}
+
+message DeleteMedicalRecordRequest {
+    string id = 1;
+}
+
+message DeleteMedicalRecordResponse {
+    bool success = 1;
+}
+
+message ListMedicalRecordsRequest {
+    string user_id = 1;
+}
+
+message ListMedicalRecordsResponse {
+    repeated MedicalRecord medical_records = 1;
+}
+
+// Genetik ma'lumotlar uchun message'lar
+message GeneticData {
+    string id = 1;
+    string user_id = 2;
+    string data_type = 3;
+    string data_value = 4;
+    string analysis_date = 5;
+    string created_at = 6;
+    string updated_at = 7;
+}
+
+message AddGeneticDataRequest {
+    GeneticData genetic_data = 1;
+}
+
+message AddGeneticDataResponse {
+    string id = 1;
+}
+
+message GetGeneticDataRequest {
+    string id = 1;
+}
+
+message GetGeneticDataResponse {
+    GeneticData genetic_data = 1;
+}
+
+message UpdateGeneticDataRequest {
+    GeneticData genetic_data = 1;
+}
+
+message UpdateGeneticDataResponse {
+    bool success = 1;
+}
+
+message DeleteGeneticDataRequest {
+    string id = 1;
+}
+
+message DeleteGeneticDataResponse {
+    bool success = 1;
+}
+
+// Turmush tarzi ma'lumotlari uchun message'lar
+message LifestyleData {
+    string id = 1;
+    string user_id = 2;
+    string data_type = 3;
+    string data_value = 4;
+    string recorded_date = 5;
+    string created_at = 6;
+    string updated_at = 7;
+}
+
+message AddLifestyleDataRequest {
+    LifestyleData lifestyle_data = 1;
+}
+
+message AddLifestyleDataResponse {
+    string id = 1;
+}
+
+message GetLifestyleDataRequest {
+    string id = 1;
+}
+
+message GetLifestyleDataResponse {
+    LifestyleData lifestyle_data = 1;
+}
+
+message UpdateLifestyleDataRequest {
+    LifestyleData lifestyle_data = 1;
+}
+
+message UpdateLifestyleDataResponse {
+    bool success = 1;
+}
+
+message DeleteLifestyleDataRequest {
+    string id = 1;
+}
+
+message DeleteLifestyleDataResponse {
+    bool success = 1;
+}
+
+// Kiyiladigan qurilma ma'lumotlari uchun message'lar
+message WearableData {
+    string id = 1;
+    string user_id = 2;
+    string device_type = 3;
+    string data_type = 4;
+    string data_value = 5;
+    string recorded_timestamp = 6;
+    string created_at = 7;
+    string updated_at = 8;
+}
+
+message AddWearableDataRequest {
+    WearableData wearable_data = 1;
+}
+
+message AddWearableDataResponse {
+    string id = 1;
+}
+
+message GetWearableDataRequest {
+    string id = 1;
+}
+
+message GetWearableDataResponse {
+    WearableData wearable_data = 1;
+}
+
+message UpdateWearableDataRequest {
+    WearableData wearable_data = 1;
+}
+
+message UpdateWearableDataResponse {
+    bool success = 1;
+}
+
+message DeleteWearableDataRequest {
+    string id = 1;
+}
+
+message DeleteWearableDataResponse {
+    bool success = 1;
+}
+
+// Sog'liq tavsiyalari va monitoringi uchun message'lar
+message HealthRecommendation {
+    string id = 1;
+    string user_id = 2;
+    string recommendation_type = 3;
+    string description = 4;
+    int32 priority = 5;
+    string created_at = 6;
+    string updated_at = 7;
+}
+
+message GenerateHealthRecommendationsRequest {
+    string user_id = 1;
+}
+
+message GenerateHealthRecommendationsResponse {
+    repeated HealthRecommendation recommendations = 1;
+}
+
+message GetRealtimeHealthMonitoringRequest {
+    string user_id = 1;
+}
+
+message GetRealtimeHealthMonitoringResponse {
+    map<string, string> health_data = 1; // Kalit-qiymat juftliklari, masalan, "yurak urishi": "80 bpm"
+}
+
+message GetDailyHealthSummaryRequest {
+    string user_id = 1;
+}
+
+message GetDailyHealthSummaryResponse {
+    map<string, string> health_data = 1;
+}
+
+message GetWeeklyHealthSummaryRequest {
+    string user_id = 1;
+}
+
+message GetWeeklyHealthSummaryResponse {
+    map<string, string> health_data = 1;
+}
