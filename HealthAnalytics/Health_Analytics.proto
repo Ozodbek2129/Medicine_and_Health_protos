@@ -260,11 +260,14 @@ message HealthRecommendation {
 }
 
 message GenerateHealthRecommendationsRequest {
-    string user_id = 1;
+    string user_id = 2;
+    string recommendation_type = 3;
+    string description = 4;
+    int32 priority = 5;
 }
 
 message GenerateHealthRecommendationsResponse {
-    repeated HealthRecommendation recommendations = 1;
+    HealthRecommendation recommendations = 1;
 }
 
 message GetRealtimeHealthMonitoringRequest {
@@ -272,21 +275,31 @@ message GetRealtimeHealthMonitoringRequest {
 }
 
 message GetRealtimeHealthMonitoringResponse {
-    map<string, string> health_data = 1; // Kalit-qiymat juftliklari, masalan, "yurak urishi": "80 bpm"
+    string first_name = 1;
+    string last_name = 2;
+    string recommendation_type = 3;
+    string description = 4;
+    int32 priority = 5;
 }
 
 message GetDailyHealthSummaryRequest {
     string user_id = 1;
+    string date = 2;
 }
 
 message GetDailyHealthSummaryResponse {
-    map<string, string> health_data = 1;
+    string first_name = 1;
+    string last_name = 2;
+    string recommendation_type = 3;
+    string description = 4;
+    int32 priority = 5;
 }
 
 message GetWeeklyHealthSummaryRequest {
     string user_id = 1;
+    string start_date = 2;
 }
 
 message GetWeeklyHealthSummaryResponse {
-    map<string, string> health_data = 1;
+    repeated HealthRecommendation health = 1;
 }
