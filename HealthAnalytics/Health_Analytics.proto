@@ -157,11 +157,14 @@ message LifestyleData {
 }
 
 message AddLifestyleDataRequest {
-    LifestyleData lifestyle_data = 1;
+    string user_id = 2;
+    string data_type = 3;
+    string data_value = 4;
+    string recorded_date = 5;
 }
 
 message AddLifestyleDataResponse {
-    string id = 1;
+    LifestyleData lifestyleData = 1;
 }
 
 message GetLifestyleDataRequest {
@@ -173,7 +176,11 @@ message GetLifestyleDataResponse {
 }
 
 message UpdateLifestyleDataRequest {
-    LifestyleData lifestyle_data = 1;
+    string id = 1;
+    string user_id = 2;
+    string data_type = 3;
+    string data_value = 4;
+    string recorded_date = 5;
 }
 
 message UpdateLifestyleDataResponse {
