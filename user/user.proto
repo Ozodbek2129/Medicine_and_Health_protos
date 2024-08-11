@@ -11,19 +11,19 @@ service UserService{
     rpc GetUserProfile (GetUserProfileRequest) returns (GetUserProfileResponse);
     rpc UpdateUserProfile (UpdateUserProfileRequest) returns (UpdateUserProfileResponse);  
     rpc LogoutUser (LogoutUserRequest) returns (LogoutUserResponse); 
-    rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse);
+    rpc GetByUserEmail (LoginUserRequest) returns (RegisterUserResponse);
+    rpc StoreRefreshToken(StoreRefreshTokenReq) returns (StoreRefreshTokenRes);
 }
 
-message ValidateTokenRequest{
-    string access_token = 1;
-}
+message StoreRefreshTokenRes{}
 
-message ValidateTokenResponse{
-    string message = 1;
+message StoreRefreshTokenReq{
+    string userId=1;    
+	string refresh_token=2;    
 }
 
 message LogoutUserRequest{
-    string access_token = 1;
+    string refresh_token = 1;
 }
 
 message LogoutUserResponse{
@@ -62,13 +62,10 @@ message GetUserProfileResponse{
     string updated_at = 10;
 }
 
-message RefreshTokenRequest{
-    string refresh_token = 1;
-}
+message RefreshTokenRequest{}
 
 message RefreshTokenResponse{
-    string access_token = 1;
-    string refresh_token = 2;
+    string message = 1;
 }
 
 message LoginUserRequest{
