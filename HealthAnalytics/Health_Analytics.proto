@@ -260,10 +260,10 @@ message HealthRecommendation {
 }
 
 message GenerateHealthRecommendationsRequest {
-    string user_id = 2;
-    string recommendation_type = 3;
-    string description = 4;
-    int32 priority = 5;
+    string user_id = 1;
+    string recommendation_type = 2;
+    string description = 3;
+    int32 priority = 4;
 }
 
 message GenerateHealthRecommendationsResponse {
