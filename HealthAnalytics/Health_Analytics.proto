@@ -73,7 +73,13 @@ message GetMedicalRecordResponse {
 }
 
 message UpdateMedicalRecordRequest {
-    MedicalRecord medical_record = 1;
+    string id = 1;
+    string user_id = 2;
+    string record_type = 3;
+    string record_date = 4;
+    string description = 5;
+    string doctor_id = 6;
+    repeated string attachments = 7;
 }
 
 message UpdateMedicalRecordResponse {
