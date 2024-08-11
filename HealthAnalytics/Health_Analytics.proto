@@ -208,11 +208,15 @@ message WearableData {
 }
 
 message AddWearableDataRequest {
-    WearableData wearable_data = 1;
+    string user_id = 2;
+    string device_type = 3;
+    string data_type = 4;
+    string data_value = 5;
+    string recorded_timestamp = 6;
 }
 
 message AddWearableDataResponse {
-    string id = 1;
+    WearableData wearableData = 1;
 }
 
 message GetWearableDataRequest {
@@ -224,7 +228,12 @@ message GetWearableDataResponse {
 }
 
 message UpdateWearableDataRequest {
-    WearableData wearable_data = 1;
+    string id = 1;
+    string user_id = 2;
+    string device_type = 3;
+    string data_type = 4;
+    string data_value = 5;
+    string recorded_timestamp = 6;
 }
 
 message UpdateWearableDataResponse {
