@@ -29,9 +29,18 @@ service HealthAnalyticsService {
 
     // Sog'liq tavsiyalari va monitoringi uchun RPC lar
     rpc GenerateHealthRecommendations(GenerateHealthRecommendationsRequest) returns (GenerateHealthRecommendationsResponse);
+    rpc GenerateHealthRecommendationsId(GenerateHealthRecommendationsIdRequest) returns (GenerateHealthRecommendationsIdResponse);
     rpc GetRealtimeHealthMonitoring(GetRealtimeHealthMonitoringRequest) returns (GetRealtimeHealthMonitoringResponse);
     rpc GetDailyHealthSummary(GetDailyHealthSummaryRequest) returns (GetDailyHealthSummaryResponse);
     rpc GetWeeklyHealthSummary(GetWeeklyHealthSummaryRequest) returns (GetWeeklyHealthSummaryResponse);
+}
+
+message GenerateHealthRecommendationsIdResponse{
+    HealthRecommendation recommendations = 1;
+}
+
+message GenerateHealthRecommendationsIdRequest{
+    string id = 1;
 }
 
 message GetAllWearableDataResponse{
