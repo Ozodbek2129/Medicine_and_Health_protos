@@ -14,6 +14,11 @@ service UserService{
     rpc GetByUserEmail (LoginUserRequest) returns (RegisterUserResponse);
     rpc StoreRefreshToken(StoreRefreshTokenReq) returns (StoreRefreshTokenRes);
     rpc GetByUserId(UserId) returns (FLResponse);
+    rpc IdCheck(UserId) returns(Response);
+}
+
+message Response{
+    bool b=1;
 }
 
 message FLResponse{
