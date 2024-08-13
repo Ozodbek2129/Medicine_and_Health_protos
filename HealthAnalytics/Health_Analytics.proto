@@ -13,29 +13,52 @@ service HealthAnalyticsService {
     rpc DeleteMedicalRecord(DeleteMedicalRecordRequest) returns (DeleteMedicalRecordResponse);
     rpc ListMedicalRecords(ListMedicalRecordsRequest) returns (ListMedicalRecordsResponse);
 
-    // Genetik ma'lumotlar uchun RPC lar
-    rpc AddGeneticData(AddGeneticDataRequest) returns (AddGeneticDataResponse);
-    rpc GetGeneticData(GetGeneticDataRequest) returns (GetGeneticDataResponse);
-    rpc UpdateGeneticData(UpdateGeneticDataRequest) returns (UpdateGeneticDataResponse);
-    rpc DeleteGeneticData(DeleteGeneticDataRequest) returns (DeleteGeneticDataResponse);
-
     // Turmush tarzi ma'lumotlari uchun RPC lar
     rpc AddLifestyleData(AddLifestyleDataRequest) returns (AddLifestyleDataResponse);
     rpc GetLifestyleData(GetLifestyleDataRequest) returns (GetLifestyleDataResponse);
+    rpc GetAllLifestyleData(GetAllLifestyleDataRequest) returns (GetAllLifestyleDataResponse);
     rpc UpdateLifestyleData(UpdateLifestyleDataRequest) returns (UpdateLifestyleDataResponse);
     rpc DeleteLifestyleData(DeleteLifestyleDataRequest) returns (DeleteLifestyleDataResponse);
 
     // Kiyiladigan qurilma ma'lumotlari uchun RPC lar
     rpc AddWearableData(AddWearableDataRequest) returns (AddWearableDataResponse);
     rpc GetWearableData(GetWearableDataRequest) returns (GetWearableDataResponse);
+    rpc GetAllWearableData(GetAllWearableDataRequest) returns (GetAllWearableDataResponse);
     rpc UpdateWearableData(UpdateWearableDataRequest) returns (UpdateWearableDataResponse);
     rpc DeleteWearableData(DeleteWearableDataRequest) returns (DeleteWearableDataResponse);
 
     // Sog'liq tavsiyalari va monitoringi uchun RPC lar
     rpc GenerateHealthRecommendations(GenerateHealthRecommendationsRequest) returns (GenerateHealthRecommendationsResponse);
+    rpc GenerateHealthRecommendationsId(GenerateHealthRecommendationsIdRequest) returns (GenerateHealthRecommendationsIdResponse);
     rpc GetRealtimeHealthMonitoring(GetRealtimeHealthMonitoringRequest) returns (GetRealtimeHealthMonitoringResponse);
     rpc GetDailyHealthSummary(GetDailyHealthSummaryRequest) returns (GetDailyHealthSummaryResponse);
     rpc GetWeeklyHealthSummary(GetWeeklyHealthSummaryRequest) returns (GetWeeklyHealthSummaryResponse);
+}
+
+message GenerateHealthRecommendationsIdResponse{
+    HealthRecommendation recommendations = 1;
+}
+
+message GenerateHealthRecommendationsIdRequest{
+    string id = 1;
+}
+
+message GetAllWearableDataResponse{
+    repeated WearableData wearabledata = 1;
+}
+
+message GetAllWearableDataRequest{
+    int64 limit = 1;
+    int64 page = 2;
+}
+
+message GetAllLifestyleDataResponse{
+    repeated LifestyleData lifestyledata = 1;
+}
+
+message GetAllLifestyleDataRequest{
+    int64 limit = 1;
+    int64 page = 2;
 }
 
 // Tibbiy yozuvlar uchun message'lar
@@ -100,49 +123,6 @@ message ListMedicalRecordsRequest {
 
 message ListMedicalRecordsResponse {
     repeated MedicalRecord medical_records = 1;
-}
-
-// Genetik ma'lumotlar uchun message'lar
-message GeneticData {
-    string id = 1;
-    string user_id = 2;
-    string data_type = 3;
-    string data_value = 4;
-    string analysis_date = 5;
-    string created_at = 6;
-    string updated_at = 7;
-}
-
-message AddGeneticDataRequest {
-    GeneticData genetic_data = 1;
-}
-
-message AddGeneticDataResponse {
-    string id = 1;
-}
-
-message GetGeneticDataRequest {
-    string id = 1;
-}
-
-message GetGeneticDataResponse {
-    GeneticData genetic_data = 1;
-}
-
-message UpdateGeneticDataRequest {
-    GeneticData genetic_data = 1;
-}
-
-message UpdateGeneticDataResponse {
-    bool success = 1;
-}
-
-message DeleteGeneticDataRequest {
-    string id = 1;
-}
-
-message DeleteGeneticDataResponse {
-    bool success = 1;
 }
 
 // Turmush tarzi ma'lumotlari uchun message'lar
