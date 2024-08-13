@@ -77,10 +77,15 @@ message GetUserProfileResponse{
     string updated_at = 10;
 }
 
-message RefreshTokenRequest{}
+message RefreshTokenRequest{
+    string email = 1;
+    string password = 2;
+    string token = 3;
+}
 
 message RefreshTokenResponse{
-    string message = 1;
+    string accsess_token = 1;
+    string resresh_token = 2;
 }
 
 message LoginUserRequest{
