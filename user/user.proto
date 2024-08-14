@@ -15,6 +15,42 @@ service UserService{
     rpc StoreRefreshToken(StoreRefreshTokenReq) returns (StoreRefreshTokenRes);
     rpc GetByUserId(UserId) returns (FLResponse);
     rpc IdCheck(UserId) returns(Response);
+
+    rpc NotificationsAdd(NotificationsAddRequest) returns (NotificationsAddResponse);
+    rpc NotificationsGet(NotificationsGetRequest) returns (NotificationsGetResponse);
+    rpc NotificationsPut(NotificationsPutRequest) returns (NotificationsPutResponse);
+}
+
+message NotificationsPutResponse{
+    string message = 1;
+}
+
+message NotificationsPutRequest{
+    string user_id = 1;
+    string message = 2;
+    string created_at = 3;
+}
+
+message Notification {
+    string message = 1;
+    string created_at = 2;
+}
+
+message NotificationsGetResponse {
+    repeated Notification notifications = 1;
+}
+
+message NotificationsGetRequest{
+    string user_id = 1;
+}
+
+message NotificationsAddResponse{
+    string message = 1;
+}
+
+message NotificationsAddRequest{
+    string user_id = 1;
+    string message = 2;
 }
 
 message Response{
@@ -77,10 +113,15 @@ message GetUserProfileResponse{
     string updated_at = 10;
 }
 
-message RefreshTokenRequest{}
+message RefreshTokenRequest{
+    string email = 1;
+    string password = 2;
+    string token = 3;
+}
 
 message RefreshTokenResponse{
-    string message = 1;
+    string accsess_token = 1;
+    string resresh_token = 2;
 }
 
 message LoginUserRequest{
