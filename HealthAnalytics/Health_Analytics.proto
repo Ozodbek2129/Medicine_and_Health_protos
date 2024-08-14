@@ -33,6 +33,8 @@ service HealthAnalyticsService {
     rpc GetRealtimeHealthMonitoring(GetRealtimeHealthMonitoringRequest) returns (GetRealtimeHealthMonitoringResponse);
     rpc GetDailyHealthSummary(GetDailyHealthSummaryRequest) returns (GetDailyHealthSummaryResponse);
     rpc GetWeeklyHealthSummary(GetWeeklyHealthSummaryRequest) returns (GetWeeklyHealthSummaryResponse);
+
+    rpc UserIDHealth(GetRealtimeHealthMonitoringRequest) returns (GetRealtimeHealthMonitoringResponse);
 }
 
 message GenerateHealthRecommendationsIdResponse{
